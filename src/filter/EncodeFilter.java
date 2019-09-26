@@ -26,6 +26,8 @@ public class EncodeFilter implements Filter {
         resp.setContentType("text/html;charset=utf-8");
 
         chain.doFilter(req, resp);
+        System.out.println("characterEncodingFilter init");
+
     }
 
     public void init(FilterConfig config) throws ServletException {

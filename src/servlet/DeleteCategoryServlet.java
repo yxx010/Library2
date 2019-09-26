@@ -1,6 +1,5 @@
 package servlet;
 
-import model.Category;
 import service.CategoryServiceImpl;
 import service.LibServiceImpl;
 
@@ -10,16 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-
-@WebServlet( "/SelectCategory")
-public class SelectCategoryServlet extends HttpServlet {
+@WebServlet("/deleteCategory")
+public class DeleteCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id=request.getParameter("categoryId");
         CategoryServiceImpl categoryService=new CategoryServiceImpl();
-        List<Category> list=categoryService.getCategoryList();
-        request.setAttribute("categoryList",list);
-        request.getRequestDispatcher("/categoryList.jsp").forward(request,response);
+        categoryService.deleteCategory(id);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

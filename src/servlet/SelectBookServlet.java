@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/SelectBookServlet")
+@WebServlet("/searchBook")
 public class SelectBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LibServiceImpl libService=new LibServiceImpl();
         String bookID=request.getParameter("bookID");
-        System.out.println("ID是"+bookID);
-        String bookName=request.getParameter("bookName");
-        System.out.println("name是"+bookName);
+
+
         String categoryName=request.getParameter("categoryName");
         List<Book> list=libService.getBooksByCondition(bookID,bookName,categoryName);
         String json= JSON.toJSONString(list);
