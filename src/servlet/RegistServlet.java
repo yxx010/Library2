@@ -16,9 +16,7 @@ public class RegistServlet extends HttpServlet {
         LibServiceImpl libService=new LibServiceImpl();
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String phone=request.getParameter("phone");
-        String email=request.getParameter("email");
-        User user=new User(username,password,phone,email);
+        User user=new User(username,password);
         if(!libService.userIsExist(username)){
             libService.regist(user);
             request.getRequestDispatcher("/index.jsp").forward(request,response);

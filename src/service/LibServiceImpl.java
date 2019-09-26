@@ -2,10 +2,10 @@ package service;
 
 import dao.LibDaoImpl;
 import model.Book;
+import model.Category;
 import model.User;
 
 import java.util.List;
-import java.util.Map;
 
 public class LibServiceImpl{
     LibDaoImpl libDao=new LibDaoImpl();
@@ -30,19 +30,19 @@ public class LibServiceImpl{
         }
         return false;
     }
-    public void addBookCategory(Long id, String categoryName, String description){
+    public void addBookCategory(String id, String categoryName){
         if (!categoryIsExist(id, categoryName)){
-            libDao.addBookCategory(id, categoryName, description);
+            libDao.addBookCategory(id, categoryName);
         }
     }
-    public boolean categoryIsExist(Long id, String categoryName) {
-        List<Map<String,Object>> list=libDao.getAllBookCategory();
+    public boolean categoryIsExist(String id, String categoryName) {
+        List<Category> list=libDao.getAllBookCategory();
                 for (int i=0;i<list.size();i++){
-                    Map<String,Object> map=list.get(i);
-                    if(map.get("id").equals(id)){
+                    Category category=list.get(i);
+                    if(category.getId().equals(id)){
                         return true;
                     }
-                    if(map.get("categoryName").equals(categoryName)){
+                    if(category.getName().equals(categoryName)){
                         return true;
                     }
                 }
@@ -63,7 +63,7 @@ public class LibServiceImpl{
     }
 
 
-    public List<Map<String, Object>> getAllBookCategory(){
+    public List<Category> getAllBookCategory(){
         return libDao.getAllBookCategory();
     }
     public void addBook(Book book){
