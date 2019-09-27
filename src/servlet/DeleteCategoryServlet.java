@@ -16,6 +16,7 @@ public class DeleteCategoryServlet extends HttpServlet {
         String id=request.getParameter("categoryId");
         CategoryServiceImpl categoryService=new CategoryServiceImpl();
         categoryService.deleteCategory(id);
+        request.getRequestDispatcher("/SelectCategory").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

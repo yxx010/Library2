@@ -23,7 +23,7 @@ public class RegistServlet extends HttpServlet {
         }else{
             response.getWriter().println("用户已存在");
         }
-    }
+    };;;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

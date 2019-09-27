@@ -2,6 +2,7 @@ package servlet;
 
 
 import service.LibServiceImpl;
+import service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +16,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        LibServiceImpl libService=new LibServiceImpl();
-        if(libService.userIsExist(username)){
-            if(libService.isLogin(username,password)){
+        UserServiceImpl userService=new UserServiceImpl();
+        if(userService.userIsExist(username)){
+            if(userService.isLogin(username,password)){
                 request.getSession().setAttribute("loginUser",username);
                 response.sendRedirect(request.getContextPath()+"/server.html");
             }else {
