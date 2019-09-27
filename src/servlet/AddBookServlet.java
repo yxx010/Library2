@@ -23,7 +23,7 @@ public class AddBookServlet extends HttpServlet {
             Book book=new Book(id,bookName,categoryName,price,description);
             libService.addBook(book);
             response.getWriter().println("添加成功");
-            response.sendRedirect("/showBooks.html");
+            response.sendRedirect("/bookList.html");
         }else {
             response.getWriter().println("该书已存在");
         }
