@@ -12,6 +12,11 @@ public class CategoryDaoImpl {
         categorys.add(category);
     }
     public static List<Category> getCategoryList() {
+        categorys.clear();
+        Category category1=new Category("ca0001","计算机");
+        Category category2=new Category("ca0002","文学");
+        categorys.add(category1);
+        categorys.add(category2);
         return categorys;
     }
     public void deleteCategory(String id) {
@@ -22,4 +27,5 @@ public class CategoryDaoImpl {
             }
         }
     }
+
 }

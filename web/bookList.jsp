@@ -1,23 +1,24 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>图书后台管理</title>
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-      
+
     </head>
 
     <body>
        <header>
             <div class="container">
                     <nav>
-                            <a href="bookList.html" >图书信息管理</a>
+                            <a href="/searchBook" >图书信息管理</a>
                     </nav>
                     <nav>
-                            <a href="categoryList.html" >分类管理</a>
+                            <a href="/selectCategory" >分类管理</a>
                     </nav>
-                   
+
             </div>
         </header>
         <section class="banner">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
 
-                
+
             </form>
             </div>
             <div class="container">
@@ -64,17 +65,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="" var="">
+                        <c:forEach items="${requestScope.bookList}" var="book" varStatus="idx">
                             <tr id="tr1">
-                                <td>1</td>
-                                <td>book0001</td>
-                                <td>Java基础</td>
-                                <td>计算机类</td>
-                                <td>￥29</td>
+                                <td>${idx.index+1}</td>
+                                <td>${book.id}</td>
+                                <td>${book.name}</td>
+                                <td>${book.category.name}</td>
+                                <td>￥${book.price}</td>
                                 <td><img src="img/g1.jpg"></td>
                                 <td>
-                                <a href="/updateBook?bookId=book0001">修改</a>
-                                <a href="/deleteBook?bookId=book0001">删除</a>
+                                <a href="/updateBook?bookId=${book.id}">修改</a>
+                                <a href="/deleteBook?bookId=${book.id}">删除</a>
 
                                 </td>
                                 <!--在循环显示数据时，此处的book0001可以用EL表达式进行替换-->
@@ -88,7 +89,7 @@
         <section class="page">
             <div class="container">
                 <div id="fatie">
-                    <a href="addBook.html"><button>新建</button></a>
+                    <a href="addBook.jsp"><button>新建</button></a>
                 </div>
             </div>
         </section>

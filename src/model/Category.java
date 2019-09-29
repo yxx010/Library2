@@ -34,7 +34,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "图书分类ID:'" + id + '\'' +
-                ", 图书名称:'" + name + '\'' +
+                ", 图书分类名称:'" + name + '\'' +
                 '}';
     }
 }

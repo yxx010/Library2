@@ -1,5 +1,6 @@
 package servlet;
 
+import com.alibaba.fastjson.JSON;
 import model.Category;
 import service.CategoryServiceImpl;
 import service.LibServiceImpl;
@@ -13,13 +14,18 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet( "/SelectCategory")
+@WebServlet( "/selectCategory")
 public class SelectCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CategoryServiceImpl categoryService=new CategoryServiceImpl();
         List<Category> list=categoryService.getCategoryList();
-        request.setAttribute("categoryList",list);
-        request.getRequestDispatcher("/categoryList.jsp").forward(request,response);
+        String json= JSON.toJSONString(list);
+        //request.setAttribute("categoryList",list);
+        //request.getRequestDispatcher("/categoryList.jsp").forward(request,response);
+
+        response.setContentType("text/html;charset=utf-8");
+        response.getWriter().println(json);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

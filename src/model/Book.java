@@ -5,25 +5,16 @@ public class Book {
     //          方法：构造方法、get和set方法，toString()方法
     private String id;
     private String name;
-    private String category;
+    private Category category;
     private String price;
     private String des;
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                ", price='" + price + '\'' +
-                ", des='" + des + '\'' +
-                '}';
-    }
+
 
     public Book(){
 
     }
-    public Book(String id, String name, String category,String price, String des) {
+    public Book(String id, String name, Category category,String price, String des) {
         this.id = id;
         this.name = name;
         this.category=category;
@@ -63,11 +54,11 @@ public class Book {
         this.des = des;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

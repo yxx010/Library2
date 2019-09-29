@@ -1,16 +1,36 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>修改图书信息</title>
+        <title>新建图书信息</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/add.css">
+        <script type="application/javascript" src="js/jquery-3.4.1.js"></script>
+        <script type="application/javascript">
+            $(function () {
+                $.ajax({
+                    "url":"/selectCategory",
+                    "type":"post",
+                    "dataType":"json",
+                    "success":function(json){
+                        console.log(json);
+                        for (var i=0;i<json.length;i++){
+                            var id=json[i].id;
+                            var name=json[i].name;
+                            $("#categoryId").append("<option value='"
+                                +id+"'>"+
+                                name+"</option>");
+                        }
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/dept/list.do">
+                    <a class="navbar-brand" href="/searchBook">
                         图书信息管理
                     </a>
                 </div>
@@ -19,17 +39,17 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>Hello, XXX!</h1>
-                <p>请小心的修改图书信息。。。</p>
+                <p>请小心地新增图书信息，要是建了一个错误的就不好了。。。</p>
             </div>
             <div class="page-header">
-                <h3><small>修改</small></h3>
+                <h3><small>新建</small></h3>
             </div>
-            <form class="form-horizontal" action="/dept/add.do" method="post">
+            <form class="form-horizontal" action="/addBook" method="post">
 
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书编号 ：</label>
                     <div class="col-sm-8">
-                        <input name="bookId" class="form-control" id="bookId" readonly="readonly">
+                        <input name="bookId" class="form-control" id="bookId">
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,9 +61,8 @@
                 <div class="form-group">
                     <label for="categoryId" class="col-sm-2 control-label">分类 ：</label>
                     <select id="categoryId" name="categoryId" class="col-sm-2 form-control" style="width: auto;margin-left: 15px">
-                       <option value="ca0001" selected="">计算机</option>
-                       <option value="ca0002">文学</option>
-                       <option value="ca0003">历史</option>
+                       <!--option value="ca0001" selected="">计算机</option>
+                       <option value="ca0002">文学</option-->
                        <!-- 下拉列表的内容要从分类中进行读取，value值是分类id -->
                     </select>
                 </div>
@@ -54,7 +73,7 @@
                         <input name="bookPrice" class="form-control" id="bookPrice">
                     </div>
                   </div>
-                   
+
                   <div class="form-group" >
                     <label for="name" class="col-sm-2 control-label">图书封面 ：</label>
                     <input type="file" id="bookPic" name="bookPic" style="padding-left: 15px">
@@ -69,7 +88,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">修改</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </form>

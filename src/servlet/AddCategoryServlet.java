@@ -17,10 +17,10 @@ public class AddCategoryServlet extends HttpServlet {
         String id=request.getParameter("categoryId");
         String categoryName=request.getParameter("categoryName");
         CategoryServiceImpl categoryService=new CategoryServiceImpl();
-        if(!categoryService.categoryIdIsExist(id)){
+        if(categoryService.searchCategoryById(id)==null){
             categoryService.addCategory(id,categoryName);
             response.getWriter().println("添加成功!s");
-            response.sendRedirect("/SelectCategory");
+            response.sendRedirect("/selectCategory");
         }else{
             response.getWriter().println("该分类已存在!f");
         }
