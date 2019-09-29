@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group" style="float: right;width: 300px;">
                     <div class="col-sm-8">
-                        <input name="searchContent" class="form-control" id="searchContent"
+                        <input name="categoryName" class="form-control" id="categoryName"
                         placeholder="输入要查询的分类" style="width: 250px">
                     </div>
                 </div>
@@ -72,11 +72,10 @@
                                 <td>${book.name}</td>
                                 <td>${book.category.name}</td>
                                 <td>￥${book.price}</td>
-                                <td><img src="img/g1.jpg"></td>
+                                <td><img src="img/${book.bookPic}"></td>
                                 <td>
                                 <a href="/updateBook?bookId=${book.id}">修改</a>
                                 <a href="/deleteBook?bookId=${book.id}">删除</a>
-
                                 </td>
                                 <!--在循环显示数据时，此处的book0001可以用EL表达式进行替换-->
 

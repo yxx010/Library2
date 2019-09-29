@@ -32,7 +32,8 @@ public class BookDaoImpl {
         return null;
     }
     public List<Book> getBooksByCategoryName(String categoryName) {
-        List bookList=null;
+        List bookList=new ArrayList();
+        bookList.clear();
         for (int i = 0; i <books.size() ; i++) {
             if(books.get(i).getCategory().getName().equals(categoryName)){
                 bookList.add(books.get(i));

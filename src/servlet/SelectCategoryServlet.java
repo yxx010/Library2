@@ -3,8 +3,6 @@ package servlet;
 import com.alibaba.fastjson.JSON;
 import model.Category;
 import service.CategoryServiceImpl;
-import service.LibServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +17,16 @@ public class SelectCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CategoryServiceImpl categoryService=new CategoryServiceImpl();
         List<Category> list=categoryService.getCategoryList();
-        String json= JSON.toJSONString(list);
-        //request.setAttribute("categoryList",list);
-        //request.getRequestDispatcher("/categoryList.jsp").forward(request,response);
-
-        response.setContentType("text/html;charset=utf-8");
-        response.getWriter().println(json);
-
+        String type=request.getParameter("type");
+        //type不为null时，返回json，给addbook查询ajax分类使用
+        if(type!=null){
+            String json= JSON.toJSONString(list);
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println(json);
+        }else {
+            request.setAttribute("categoryList",list);
+            request.getRequestDispatcher("/categoryList.jsp").forward(request,response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

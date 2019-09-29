@@ -1,4 +1,9 @@
+<%@ page import="model.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String updateFlag=(String) request.getAttribute("updateFlag");
+    Book book=(Book) request.getAttribute("book");
+%>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,6 +16,7 @@
                 $.ajax({
                     "url":"/selectCategory",
                     "type":"post",
+                    "data":{"type":"1"},
                     "dataType":"json",
                     "success":function(json){
                         console.log(json);
@@ -24,6 +30,13 @@
                     }
                 })
             })
+
+            var flag='<%=updateFlag%>';
+            if("1"==flag){
+               $("head>title").append("修改图书信息");
+               $("h3>small").append("修改");
+               $("#bookId").append
+            }
         </script>
     </head>
     <body>
@@ -44,7 +57,7 @@
             <div class="page-header">
                 <h3><small>新建</small></h3>
             </div>
-            <form class="form-horizontal" action="/addBook" method="post">
+            <form class="form-horizontal" action="/addBook" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书编号 ：</label>

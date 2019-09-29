@@ -7,8 +7,8 @@ public class Book {
     private String name;
     private Category category;
     private String price;
+    private String bookPic;
     private String des;
-
 
 
     public Book(){
@@ -19,6 +19,14 @@ public class Book {
         this.name = name;
         this.category=category;
         this.price = price;
+        this.des = des;
+    }
+    public Book(String id, String name, Category category,String price,String bookPic, String des) {
+        this.id = id;
+        this.name = name;
+        this.category=category;
+        this.price = price;
+        this.bookPic=bookPic;
         this.des = des;
     }
 
@@ -62,4 +70,11 @@ public class Book {
         this.category = category;
     }
 
+    public String getBookPic() {
+        return bookPic;
+    }
+
+    public void setBookPic(String bookPic) {
+        this.bookPic = bookPic;
+    }
 }
