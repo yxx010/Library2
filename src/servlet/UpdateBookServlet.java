@@ -18,6 +18,7 @@ public class UpdateBookServlet extends HttpServlet {
         Book book=bookService.getBookByBookId(bookId);
         request.setAttribute("book",book);
         request.setAttribute("updateFlag","1");
+        System.out.println(book.getId()+book.getCategory());
         request.getRequestDispatcher("/addBook.jsp?updateFlag=1").forward(request,response);
     }
 

@@ -3,6 +3,14 @@
 <%
     String updateFlag=(String) request.getAttribute("updateFlag");
     Book book=(Book) request.getAttribute("book");
+    if(book!=null){
+        String id=book.getId();
+        String name=book.getName();
+        String categoryId=book.getCategory().getId();
+        String price=book.getPrice();
+        String bookPic=book.getBookPic();
+        String remark=book.getDes();
+    }
 %>
 <html>
     <head>
@@ -33,9 +41,18 @@
 
             var flag='<%=updateFlag%>';
             if("1"==flag){
-               $("head>title").append("修改图书信息");
-               $("h3>small").append("修改");
-               $("#bookId").append
+
+               //$("head>title").append("修改图书信息");
+                $("head>title").text("修改图书信息");
+                $("#biaoti").text("请小心地修改图书信息");
+                $("#fubiaoti").text("修改");
+
+               $("#bookId").value="b001";
+               $("#bookName").val("计算机");
+               $("#categoryId").val("c001");
+                $("#bookPrice").val("100");
+                $("#bookPic").val("1.jpg");;
+                $("#remarks").val("修改备注");
             }
         </script>
     </head>
@@ -52,23 +69,23 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>Hello, XXX!</h1>
-                <p>请小心地新增图书信息，要是建了一个错误的就不好了。。。</p>
+                <p id="biaoti">请小心地新增图书信息，要是建了一个错误的就不好了。。。</p>
             </div>
             <div class="page-header">
-                <h3><small>新建</small></h3>
+                <h3 id="fubiaoti"><small>新建</small></h3>
             </div>
             <form class="form-horizontal" action="/addBook" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书编号 ：</label>
                     <div class="col-sm-8">
-                        <input name="bookId" class="form-control" id="bookId">
+                        <input name="bookId" class="form-control" id="bookId" value="图书id">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书名称 ：</label>
                     <div class="col-sm-8">
-                        <input name="bookName" class="form-control" id="bookName">
+                        <input name="bookName" class="form-control" id="bookName" value="图书名">
                     </div>
                 </div>
                 <div class="form-group">
