@@ -3,14 +3,6 @@
 <%
     String updateFlag=(String) request.getAttribute("updateFlag");
     Book book=(Book) request.getAttribute("book");
-    if(book!=null){
-        String id=book.getId();
-        String name=book.getName();
-        String categoryId=book.getCategory().getId();
-        String price=book.getPrice();
-        String bookPic=book.getBookPic();
-        String remark=book.getDes();
-    }
 %>
 <html>
     <head>
@@ -31,7 +23,7 @@
                         for (var i=0;i<json.length;i++){
                             var id=json[i].id;
                             var name=json[i].name;
-                            $("#categoryId").append("<option value='"
+                            $("#categoryId").append("<option selected='' value='"
                                 +id+"'>"+
                                 name+"</option>");
                         }
@@ -39,21 +31,6 @@
                 })
             })
 
-            var flag='<%=updateFlag%>';
-            if("1"==flag){
-
-               //$("head>title").append("修改图书信息");
-                $("head>title").text("修改图书信息");
-                $("#biaoti").text("请小心地修改图书信息");
-                $("#fubiaoti").text("修改");
-
-               $("#bookId").value="b001";
-               $("#bookName").val("计算机");
-               $("#categoryId").val("c001");
-                $("#bookPrice").val("100");
-                $("#bookPic").val("1.jpg");;
-                $("#remarks").val("修改备注");
-            }
         </script>
     </head>
     <body>
@@ -79,13 +56,13 @@
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书编号 ：</label>
                     <div class="col-sm-8">
-                        <input name="bookId" class="form-control" id="bookId" value="图书id">
+                        <input name="bookId" class="form-control" id="bookId" value="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">图书名称 ：</label>
                     <div class="col-sm-8">
-                        <input name="bookName" class="form-control" id="bookName" value="图书名">
+                        <input name="bookName" class="form-control" id="bookName" value="">
                     </div>
                 </div>
                 <div class="form-group">
@@ -112,7 +89,7 @@
                   <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">备注 ：</label>
                     <div class="col-sm-8">
-                        <input name="remarks" class="form-control" id="remarks">
+                        <input name="remarks" class="form-control" id="remarks" value="备注">
                     </div>
                   </div>
 
@@ -126,5 +103,19 @@
         <footer class="text-center" >
             copy@imooc
         </footer>
+    <script type="text/javascript">
+        var flag='<%=updateFlag%>';
+        if("1"==flag){
+            debugger
+            $("head>title").text("修改图书信息");
+            $("#biaoti").text("请小心地修改图书信息");
+            $("#fubiaoti").text("修改");
+            $("#bookId").val('<%=book.getId()%>');
+            $("#bookName").val('<%=book.getName()%>');
+            $("#bookPrice").val('<%=book.getPrice()%>');
+            console.log($("#remarks"),'333');
+            $("#remarks").val('<%=book.getDes()%>');
+        }
+    </script>
     </body>
 </html>
